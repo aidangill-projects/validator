@@ -14,6 +14,7 @@ public interface IValidator
 /// 2. Password >= length 12 with any char
 /// 3. Password >= length 7 with cover of at least 3 groups - lowercase, uppercase, digit, special chars
 /// </summary>
+/// <exception cref="System.ArgumentNullException"/>
 public class DefaultValidator : IValidator
 {
     private const int LongMinLength = 12;
