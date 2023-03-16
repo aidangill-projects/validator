@@ -1,6 +1,6 @@
 namespace ValidatorTests;
 
-public class Tests
+public class DefaultValidatorTests
 {
     private readonly string[] _valid = {
         "P@ssword123",

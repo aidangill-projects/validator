@@ -1,7 +1,7 @@
 namespace Validator;
 
 /// <summary>
-/// Interface <c>IValidator</c> uses an IsValid(string) method to validate passwords
+/// Interface <c>IValidator</c> contains an IsValid(string) method to validate passwords
 /// </summary>
 public interface IValidator
 {
@@ -19,6 +19,7 @@ public class DefaultValidator : IValidator
     private const int LongMinLength = 12;
     private const int MinLength = 7;
 
+    /// <exception cref="System.ArgumentNullException"/>
     public bool IsValid(string password)
     {
         if (password is null) throw new ArgumentNullException(nameof(password));
