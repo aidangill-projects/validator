@@ -1,21 +1,29 @@
 namespace Validator;
 
 /// <summary>
-/// Class <c>Validator</c> validates a password against policy reqs.
+/// Interface <c>IValidator</c> uses an IsValid(string) method to validate passwords
+/// </summary>
+public interface IValidator
+{
+    public bool IsValid(string password);
+}
+
+/// <summary>
+/// Class <c>Validator</c> validates a password against policy reqs, defaulting to:
 /// 1. No whitespace
 /// 2. Password >= length 12 with any char
 /// 3. Password >= length 7 with cover of at least 3 groups - lowercase, uppercase, digit, special chars
 /// </summary>
-public class Validator{
-    
+public class DefaultValidator : IValidator
+{
     private const int LongMinLength = 12;
     private const int MinLength = 7;
-    
-    public bool IsValid(string password){
-       
-       if (password is null) throw new ArgumentNullException(nameof(password));
 
-       // any whitespace -> fail
+    public bool IsValid(string password)
+    {
+        if (password is null) throw new ArgumentNullException(nameof(password));
+
+        // any whitespace -> fail
         if (password.Contains(' ')) return false;
 
         // over 12 chars -> pass
@@ -31,16 +39,7 @@ public class Validator{
         if (password.Any(char.IsLower)) cover += 1;
         if (password.Any(char.IsDigit)) cover += 1;
         if (password.Any(char.IsSymbol)) cover += 1;
-        
-        return cover >= 3;
-   }
-}
 
-// etc ->
-public class AlwaysTrueValidator : Validator
-{
-    public new bool IsValid(string password)
-    {
-        return true;
+        return cover >= 3;
     }
 }

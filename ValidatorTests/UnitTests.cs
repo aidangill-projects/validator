@@ -24,12 +24,12 @@ public class Tests
         "WhiteSp !2"
     };
 
-    private Validator.Validator? _v;
+    private Validator.DefaultValidator? _v;
 
     [SetUp]
     public void Setup()
     {
-        _v = new Validator.Validator();
+        _v = new Validator.DefaultValidator();
     }
     
     [Test]

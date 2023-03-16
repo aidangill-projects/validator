@@ -4,7 +4,7 @@ internal static class Entry
 {
     private static void Main(string[] args)
     {
-        Validator v = new Validator();
+        DefaultValidator v = new DefaultValidator();
         v.IsValid("1234");
     }
 }
